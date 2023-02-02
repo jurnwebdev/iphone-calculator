@@ -52,7 +52,8 @@ for(let i = 0; i < operation.length; i++){
      });
 }
 
-// equals.addEventListener("click", solveEquation);
+
+equals.addEventListener("click", solveEquation);
 
 
 // function addNum(){
@@ -79,10 +80,9 @@ for(let i = 0; i < operation.length; i++){
 // }
 
 
-// function solveEquation(){
-//     secondNumber.push(resultDisplay.textContent);
-//     console.log("This is the second Number: " + secondNumber)
-// }
+function solveEquation(){
+    console.log(allNumber);
+}
 
 
 clear.addEventListener("click", ()=>{
