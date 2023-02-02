@@ -1,84 +1,88 @@
 const resultDisplay = document.getElementById("result");
-const numbers = document.querySelectorAll("#number");
+const numbers = document.querySelectorAll("#number"); //This is an array
 const clear = document.getElementById("clear");
 const operation = document.querySelectorAll("#operation");
 const equals = document.getElementById("equal");
 let input = [];
-let firstNumber=[];
-let secondNumber=[];
+// let allNumbers; I was trying to put all numbers in an array here, but e no wan cooperate
+//i decided to understand how single works first before proceeding to calculate more that 2 numbers.
+let firstNumber = [];
+let secondNumber = []; 
+let allNumber = [];
 let answer;
+let isExist = false; 
+let result;
 
-let isExist = false;
-
-
-
-startApp();
+renderApp();
 
 
-function startApp(){
+//First and foremost all numbers are stored in an array.
+function renderApp()
+{
+    input = [];
+    for(let i = 0; i < numbers.length; i++){
+        numbers[i].addEventListener('click', function runSimulation(){
 
-    for(let i = 0; i < numbers.length; i++){ 
-        let eachNumber = numbers[i];
-        eachNumber.addEventListener("click", ()=>{
-     
-        if(resultDisplay.textContent === "0" || isExist === false){
-            resultDisplay.textContent = "";
-            input.push(eachNumber.textContent);
-            firstNumber = input.join("");
-            resultDisplay.innerHTML = firstNumber   
-        }
-    else{
-        input = [];
-        input.push(eachNumber.textContent);
-        secondNumber = input.join("");
-        resultDisplay.innerHTML = secondNumber;
-        console.log("This is the Second Number: " + secondNumber);
-        }
-   })}
+            if(isExist === false){
+                input.push(numbers[i].textContent);
+                result = input.join("");
+                resultDisplay.textContent = result;
+            }
+           
+            // what is this suppose to do if TRUE?
+            else if(isExist === true){ 
+                input.push(numbers[i].textContent);
+                resultDisplay.textContent = input.join("");
+                allNumber.push();
+                console.log("This is it: " + allNumber);
+            }
+        });
+    }
 }
 
-for(i = 0; i < operation.length; i++){
+
+for(let i = 0; i < operation.length; i++){
     let arithmeticSign = operation[i];
     arithmeticSign.addEventListener("click", ()=>{
-        console.log("This is the first Number: " + firstNumber);
-        console.log(arithmeticSign.textContent)
+        allNumber.push(result);
+        console.log("Stored number: " + allNumber);
+        console.log("THis is the operation: " + arithmeticSign.textContent)
         isExist = true;
-        startApp();
+        input = []//you were the problem na wa o
      });
 }
 
-equals.addEventListener("click", solveEquation);
+// equals.addEventListener("click", solveEquation);
 
 
-function addNum(){
-    answer = firstNumber + secondNumber;
-    // resultDisplay.textContent = answer;
-    return answer;
-}
+// function addNum(){
+//     answer = firstNumber + secondNumber;
+//     // resultDisplay.textContent = answer;
+//     return answer;
+// }
 
-function subNum(){
-    answer = firstNumber - secondNumber;
-    // resultDisplay.textContent = answer;
-    return answer;
-}
+// function subNum(){
+//     answer = firstNumber - secondNumber;
+//     // resultDisplay.textContent = answer;
+//     return answer;
+// }
 
-function mulNum(){
-    answer = firstNumber * secondNumber;
-    // resultDisplay.textContent = answer;
-    return answer;
-}
+// function mulNum(){
+//     answer = firstNumber * secondNumber;
+//     // resultDisplay.textContent = answer;
+//     return answer;
+// }
 
-function divNum(){
-    answer = firstNumber / secondNumber;
-    return answer;
-}
-
-
-function solveEquation(){
- console.log("solving...")
-}
+// function divNum(){
+//     answer = firstNumber / secondNumber;
+//     return answer;
+// }
 
 
+// function solveEquation(){
+//     secondNumber.push(resultDisplay.textContent);
+//     console.log("This is the second Number: " + secondNumber)
+// }
 
 
 clear.addEventListener("click", ()=>{
