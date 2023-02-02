@@ -23,18 +23,16 @@ function renderApp()
     for(let i = 0; i < numbers.length; i++){
         numbers[i].addEventListener('click', function runSimulation(){
 
-            if(isExist === false){
+            if(resultDisplay.textContent === "0" || isExist === false){
                 input.push(numbers[i].textContent);
-                result = input.join("");
+                result = parseInt(input.join(""));
                 resultDisplay.textContent = result;
             }
            
-            // what is this suppose to do if TRUE?
             else if(isExist === true){ 
                 input.push(numbers[i].textContent);
-                resultDisplay.textContent = input.join("");
-                allNumber.push();
-                console.log("This is it: " + allNumber);
+                result = parseInt(input.join(""));
+                resultDisplay.textContent = result;
             }
         });
     }
@@ -52,40 +50,22 @@ for(let i = 0; i < operation.length; i++){
      });
 }
 
-
 equals.addEventListener("click", solveEquation);
 
-
-// function addNum(){
-//     answer = firstNumber + secondNumber;
-//     // resultDisplay.textContent = answer;
-//     return answer;
-// }
-
-// function subNum(){
-//     answer = firstNumber - secondNumber;
-//     // resultDisplay.textContent = answer;
-//     return answer;
-// }
-
-// function mulNum(){
-//     answer = firstNumber * secondNumber;
-//     // resultDisplay.textContent = answer;
-//     return answer;
-// }
-
-// function divNum(){
-//     answer = firstNumber / secondNumber;
-//     return answer;
-// }
-
-
 function solveEquation(){
+    allNumber.push(result);
     console.log(allNumber);
+    for(let i =0; i < allNumber.length; i++){
+        answer = answer + allNumber[i];
+        
+    }
+    
+    console.log(answer);
 }
 
 
 clear.addEventListener("click", ()=>{
-    input.pop();
-    resultDisplay.innerHTML = input.join("")
+    input = [];
+    allNumber = [];
+    resultDisplay.textContent = "0"
 });
